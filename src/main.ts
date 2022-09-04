@@ -12,7 +12,7 @@ async function bootstrap() {
     app.useGlobalFilters(new HttpExceptionFilter());
     // 全局拦截器
     app.useGlobalInterceptors(new TransformInterceptor());
-
+    // 全局校验器
     app.useGlobalPipes(new ValidationPipe());
 
     // 设置swagger文档
@@ -24,7 +24,7 @@ async function bootstrap() {
         .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('docs', app, document);
-
+    // 设置端口
     await app.listen(3000);
 }
 bootstrap();

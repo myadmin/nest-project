@@ -7,7 +7,7 @@ import * as bcrypt from 'bcryptjs';
 export class UserEntity {
     @ApiProperty({ description: '用户id' })
     @PrimaryGeneratedColumn('uuid')
-    id: number;
+    id: string;
 
     @Column({ length: 100, nullable: true })
     username: string;
@@ -31,7 +31,8 @@ export class UserEntity {
     @Column({ name: 'create_time', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createTime: Date;
 
-    @Column({ name: 'update_time', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    @Exclude()
+    @Column({ select: false, name: 'update_time', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     updateTime: Date;
 
     @BeforeInsert()
